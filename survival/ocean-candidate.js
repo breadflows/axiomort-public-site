@@ -74,8 +74,10 @@ export function createOceanCandidate(scene, {quality='balanced'}={}) {
   const far=quality==='performance'?64:quality==='high'?160:128;
   const addTile=(width,depth,ox,oz,sx,sz,material=waterMaterial)=>{
     const geometry=new THREE.PlaneGeometry(width,depth,sx,sz).translate(ox,-oz,0);
+    // Preserve the animated wave silhouette while allowing off-screen tiles to be skipped.
+    geometry.computeBoundingSphere();geometry.boundingSphere.radius+=3;
     const tile=new THREE.Mesh(geometry,material);
-    tile.castShadow=false;tile.receiveShadow=false;tile.frustumCulled=false;
+    tile.castShadow=false;tile.receiveShadow=false;
     group.add(tile);return tile;
   };
   const nearTile=addTile(256,256,0,0,near,near,quality==='performance'?waterMaterial:nearMaterial);
