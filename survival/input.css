@@ -1,4 +1,11 @@
 /* Device-specific controls; the game canvas stays separate from the HUD. */
+.header-actions{display:flex;align-items:center;gap:8px;margin-left:auto}
+#fullscreen-button{display:none;place-items:center;width:44px;height:44px;padding:0;line-height:1;background:#0c1111d9;border-color:#eee7d04d;border-radius:0}
+#fullscreen-button svg{display:block}
+#fullscreen-button .fullscreen-exit{display:none}
+#fullscreen-button[aria-pressed=true] .fullscreen-enter{display:none}
+#fullscreen-button[aria-pressed=true] .fullscreen-exit{display:block}
+body[data-touch=true][data-input=touch] #fullscreen-button:not([hidden]){display:grid}
 .pad-hint{display:inline-flex;align-items:center;justify-content:center;vertical-align:middle;min-width:28px;min-height:28px}
 .pad-glyph{display:block;width:28px;height:28px;filter:drop-shadow(0 2px 5px #0008)}
 #target-action .pad-glyph,#build-hint .pad-glyph{width:25px;height:25px}

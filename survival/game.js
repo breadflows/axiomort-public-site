@@ -200,7 +200,7 @@ function renderSettings(){
  const feedbackButton=document.createElement('button');feedbackButton.textContent='Give feedback';feedbackButton.onclick=()=>feedback.open('pause');$('panel-body').querySelector('.settings-actions').prepend(feedbackButton);
  $('quality').value=d.quality;$('frame-limit').value=String(d.frameLimit);$('sprint-mode').value=d.sprintMode;
  $('fullscreen-toggle').disabled=!document.fullscreenEnabled;
- $('fullscreen-toggle').onclick=async()=>{try{if(document.fullscreenElement)await document.exitFullscreen();else await document.documentElement.requestFullscreen();}catch{showToast('Fullscreen is unavailable in this browser.');}};
+ $('fullscreen-toggle').onclick=toggleFullscreen;
  $('resume').onclick=()=>started?openPanel('pause'):closePanel();
  $('settings-reset').onclick=()=>{state.settings={...freshState().settings};applyQuality();sound.setVolume(state.settings.sound);sound.setMusicVolume(state.settings.music);sound.setEffectsVolume(state.settings.effects);syncMenuMusic();updateTitle();hotbarSignature='';updateShortcutLabels();renderHotbar();saveSettings();renderSettings();};
  $('settings-controls-guide').onclick=()=>openPanel('controls');
@@ -478,12 +478,12 @@ function refreshUI(){
 }
 function setResolution(){if(!renderer||!camera)return;const dpr=devicePixelRatio,q=state.settings.quality,base=q==='performance'?Math.min(1,dpr*.75):q==='high'?Math.min(2,dpr*1.25):Math.min(1.5,dpr);renderer.setPixelRatio(Math.min(2.25,base*state.settings.renderScale));renderer.setSize(innerWidth,innerHeight);camera.aspect=innerWidth/innerHeight;camera.fov=state.settings.fov;camera.updateProjectionMatrix();}
 function applyQuality(){setResolution();}
-function look(dx,dy){state.player.yaw-=dx*.002*state.settings.sensitivity;state.player.pitch=THREE.MathUtils.clamp(state.player.pitch-dy*.002*state.settings.sensitivity*(state.settings.invertY?-1:1),-1.3,1.3);}
+function look(dx,dy,gain=1){state.player.yaw-=dx*.002*state.settings.sensitivity*gain;state.player.pitch=THREE.MathUtils.clamp(state.player.pitch-dy*.002*state.settings.sensitivity*gain*(state.settings.invertY?-1:1),-1.3,1.3);}
 canvas.addEventListener('wheel',e=>{if(!started||paused||transitioning||riftSession||buildKind||!e.deltaY)return;e.preventDefault();cycleTool(state,e.deltaY);equipTool(equippedTool(state));},{passive:false});
 document.addEventListener('mousemove',e=>{if(!paused&&document.pointerLockElement===canvas)look(e.movementX,e.movementY);});
 canvas.addEventListener('contextmenu',e=>e.preventDefault());
 canvas.addEventListener('pointerdown',e=>{if(paused)return;if(document.pointerLockElement===canvas){if(e.button===0){if(!buildKind){gatherHeld=true;gatherPointerId=e.pointerId;}primaryAction();}else if(e.button===2&&equippedTool(state)==='berries')eatBerry();return;}if(e.button!==0)return;drag={x:e.clientX,y:e.clientY,moved:0,id:e.pointerId};canvas.setPointerCapture(e.pointerId);});
-canvas.addEventListener('pointermove',e=>{if(!drag||paused||document.pointerLockElement===canvas)return;const dx=e.clientX-drag.x,dy=e.clientY-drag.y;drag.moved+=Math.abs(dx)+Math.abs(dy);look(dx,dy);drag.x=e.clientX;drag.y=e.clientY;});
+canvas.addEventListener('pointermove',e=>{if(!drag||paused||document.pointerLockElement===canvas)return;const dx=e.clientX-drag.x,dy=e.clientY-drag.y;drag.moved+=Math.abs(dx)+Math.abs(dy);look(dx,dy,e.pointerType==='touch'?1.35:1);drag.x=e.clientX;drag.y=e.clientY;});
 canvas.addEventListener('pointerup',e=>{if(drag?.id===e.pointerId&&drag.moved<5&&!touch)captureMouse();if(drag?.id===e.pointerId)drag=null;});canvas.addEventListener('pointercancel',e=>{if(drag?.id===e.pointerId)drag=null;if(gatherPointerId===e.pointerId){gatherHeld=false;gatherPointerId=null;}});
 document.addEventListener('pointerup',e=>{if(e.pointerId===gatherPointerId){gatherHeld=false;gatherPointerId=null;}});
 document.addEventListener('pointerlockchange',()=>{
@@ -576,7 +576,10 @@ movementPad.onpointermove=e=>{if(e.pointerId===activeStickPointer)updateTouchSti
 movementPad.onpointerup=movementPad.onpointercancel=movementPad.onlostpointercapture=releaseTouchStick;
 window.addEventListener('blur',()=>{cancelBindingCapture();keys.clear();if(started&&!paused)openPanel('pause');});document.addEventListener('visibilitychange',()=>{if(document.hidden){menuMusic.pause();if(started){save();if(!paused)openPanel('pause');}}else requestMenuMusic();});window.addEventListener('pagehide',()=>{if(started)save();});
 window.addEventListener('resize',()=>{if(renderer)setResolution();});
-document.addEventListener('fullscreenchange',()=>{const button=$('fullscreen-toggle');if(button)button.textContent=document.fullscreenElement?'Exit fullscreen':'Enter fullscreen';});
+async function toggleFullscreen(){try{if(document.fullscreenElement)await document.exitFullscreen();else await document.documentElement.requestFullscreen();}catch{showToast('Fullscreen is unavailable in this browser.');}}
+function syncFullscreenButtons(){const active=!!document.fullscreenElement,button=$('fullscreen-button'),settingsButton=$('fullscreen-toggle');button.setAttribute('aria-pressed',String(active));button.setAttribute('aria-label',active?'Exit fullscreen':'Enter fullscreen');button.title=active?'Exit fullscreen':'Fullscreen';if(settingsButton)settingsButton.textContent=active?'Exit fullscreen':'Enter fullscreen';}
+const mobileFullscreenButton=$('fullscreen-button');mobileFullscreenButton.hidden=!touch||!document.fullscreenEnabled||typeof document.documentElement.requestFullscreen!=='function';mobileFullscreenButton.onclick=toggleFullscreen;
+document.addEventListener('fullscreenchange',syncFullscreenButtons);
 
 function updatePlayer(dt,pad){
   const forward=(Number(keys.has(bind('forward'))||keys.has('ArrowUp'))-Number(keys.has(bind('back'))||keys.has('ArrowDown')))-(pad?.moveY||0)-touchStick.y,side=(Number(keys.has(bind('right'))||keys.has('ArrowRight'))-Number(keys.has(bind('left'))||keys.has('ArrowLeft')))+(pad?.moveX||0)+touchStick.x;
