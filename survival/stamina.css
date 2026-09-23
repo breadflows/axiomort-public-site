@@ -1,0 +1,10 @@
+/* AXIOMORT movement stamina sits with the existing bottom-left vitals. */
+.vitals .stamina-vital{color:#e6e4d6}
+.vitals #stamina{height:8px;margin-top:7px;accent-color:#c9d992}
+.vitals #stamina::-webkit-meter-bar{background:repeating-linear-gradient(90deg,#152524 0 14px,#26312c 14px 16px);border:1px solid #b9cda94f;border-radius:1px}
+.vitals #stamina::-webkit-meter-optimum-value{background:linear-gradient(90deg,#8da866,#d6e6a4);border-radius:0;box-shadow:0 0 7px #b8d38b55;transition:width .13s linear}
+.vitals #stamina::-moz-meter-bar{background:linear-gradient(90deg,#8da866,#d6e6a4);border-radius:0}
+body[data-stamina=exhausted] .stamina-vital{color:#efbb89}
+body[data-stamina=exhausted] .vitals #stamina::-webkit-meter-optimum-value{background:#bd7c59;box-shadow:none}
+body[data-stamina=exhausted] .vitals #stamina::-moz-meter-bar{background:#bd7c59}
+@media(max-width:850px){.vitals .stamina-vital{margin-bottom:0}}

@@ -1,0 +1,40 @@
+/* Device-specific controls; the game canvas stays separate from the HUD. */
+.pad-hint{display:inline-flex;align-items:center;justify-content:center;vertical-align:middle;min-width:28px;min-height:28px}
+.pad-glyph{display:block;width:28px;height:28px;filter:drop-shadow(0 2px 5px #0008)}
+#target-action .pad-glyph,#build-hint .pad-glyph{width:25px;height:25px}
+.control-key{display:inline-block;vertical-align:middle}
+.touch-symbol{display:inline-flex;align-items:center;justify-content:center;width:25px;height:25px}
+.touch-symbol svg{display:block;width:23px;height:23px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+#target-action .touch-symbol svg{stroke-width:2.7}
+.touch-hint{font-weight:600}
+#target-action{display:flex;align-items:center;justify-content:center;gap:5px;flex-wrap:wrap}
+#target-action:empty{display:none}
+#journal-button .pad-glyph,#inventory-button .pad-glyph{width:30px;height:30px}
+body[data-input=touch] #journal-button,body[data-input=touch] #inventory-button{min-width:38px;min-height:38px}
+body[data-input=touch] #inventory-craft kbd{display:none}
+body[data-input=touch] #build-hint small{display:none}
+body[data-input=gamepad] #touch-controls{display:none!important}
+#touch-controls{left:max(16px,env(safe-area-inset-left));right:max(16px,env(safe-area-inset-right));bottom:calc(112px + env(safe-area-inset-bottom));align-items:center;z-index:12}
+#movement-pad{position:relative;display:block;flex:none;width:132px;height:132px;border:1px solid #d3be9b99;border-radius:50%;background:radial-gradient(circle at 50% 48%,#3b413d88 0 25%,#1c2528b8 27% 60%,#080f13d9 75%);box-shadow:inset 0 0 0 7px #101a1dcc,inset 0 0 0 9px #d5bf9255,0 12px 32px #0008;pointer-events:auto;touch-action:none;user-select:none;-webkit-user-select:none}
+#movement-pad::before{content:'';position:absolute;inset:13px;border:1px solid #d8d2bd35;border-radius:50%;pointer-events:none}
+#movement-thumb{position:absolute;left:50%;top:50%;width:48px;height:48px;border:2px solid #e8dcc4bd;border-radius:50%;background:radial-gradient(circle at 35% 30%,#8b8571,#353e3b 70%);box-shadow:inset 0 0 0 6px #111b1e8a,0 5px 15px #0009;transform:translate(calc(-50% + var(--stick-x,0px)),calc(-50% + var(--stick-y,0px)));pointer-events:none}
+.touch-actions{display:grid;grid-template-columns:repeat(2,60px);grid-template-rows:repeat(2,60px);gap:12px;align-items:center}
+#touch-controls .touch-action-button{display:grid;place-items:center;width:60px;height:60px;min-width:60px;min-height:60px;padding:0;border:1px solid #d8c6a785;border-radius:50%;background:radial-gradient(circle at 35% 25%,#55605aaf,#111b1ee6 72%);box-shadow:inset 0 0 0 4px #0c1618a8,0 5px 20px #0009;color:#f3eadd;touch-action:none;user-select:none;-webkit-user-select:none}
+#touch-controls .touch-action-button svg{display:block;width:29px;height:29px;fill:none;stroke:currentColor;stroke-width:2.7;stroke-linecap:round;stroke-linejoin:round;pointer-events:none}
+#touch-controls .touch-action-primary{width:68px;height:68px;min-width:68px;min-height:68px;margin:-4px;border-color:#e3ad6a;background:radial-gradient(circle at 35% 25%,#ab7444,#3b2b25 70%);color:#fff3df}
+#touch-controls .touch-action-button:active{transform:scale(.94);border-color:#fff0d4;background-color:#916d4a}
+@media(max-width:430px){#movement-pad{width:116px;height:116px}.touch-actions{grid-template-columns:repeat(2,54px);grid-template-rows:repeat(2,54px);gap:9px}#touch-controls .touch-action-button{width:54px;height:54px;min-width:54px;min-height:54px}#touch-controls .touch-action-primary{width:62px;height:62px;min-width:62px;min-height:62px}}
+@media(orientation:landscape) and (max-height:500px){#touch-controls{bottom:calc(12px + env(safe-area-inset-bottom))}#movement-pad{width:104px;height:104px}#movement-thumb{width:40px;height:40px}.touch-actions{grid-template-columns:repeat(2,48px);grid-template-rows:repeat(2,48px);gap:8px}#touch-controls .touch-action-button{width:48px;height:48px;min-width:48px;min-height:48px}#touch-controls .touch-action-primary{width:56px;height:56px;min-width:56px;min-height:56px}#touch-controls .touch-action-button svg{width:25px;height:25px}}
+@media(orientation:landscape) and (max-height:500px){body[data-input=touch] #hud{top:0;bottom:auto;grid-template-columns:140px minmax(0,1fr);gap:12px;align-items:start;padding:10px calc(76px + env(safe-area-inset-right)) 0 230px}body[data-input=touch] #hud .vitals label{margin:2px 0;font-size:10px}body[data-input=touch] #hud .hotbar-wrap{grid-column:2;justify-content:flex-end}body[data-input=touch] #hud .tool-slot{min-height:66px}}
+
+body[data-input=keyboard] #touch-controls{display:none!important}
+
+.controller-guide{margin:0 0 1.5rem}
+.controller-guide h3{font-size:.75rem;letter-spacing:.16em;margin:0 0 .6rem}
+.controller-guide-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(165px,1fr));gap:.4rem .9rem}
+.controller-guide-grid>div{display:flex;align-items:center;gap:.5rem;min-height:34px;font-size:.83rem}
+.controller-guide-grid .pad-hint{flex:none}
+.pad-slot-cycle{position:absolute;top:-15px;left:50%;transform:translateX(-50%);display:flex;gap:2px;white-space:nowrap}
+.pad-slot-cycle .pad-glyph{width:20px;height:20px}
+
+body[data-input=touch] #touch-controls{display:flex}

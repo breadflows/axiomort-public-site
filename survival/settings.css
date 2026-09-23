@@ -1,0 +1,72 @@
+#panel[data-screen=settings]{width:min(620px,100%);overflow-y:auto}
+.settings-menu{display:grid;gap:28px}
+.settings-menu .settings-group{border-top:1px solid #d8d1bc3d;padding-top:18px}
+.settings-menu .settings-note{margin:2px 0 12px;font-size:12px;line-height:1.4;color:#aeb1ad}
+.settings-menu .settings-group h3{margin:0 0 8px;color:#d7a36c;font:800 12px/1.2 Arial,Helvetica,sans-serif;letter-spacing:.18em}
+.settings-menu .settings-row{display:grid;grid-template-columns:minmax(0,1fr) 178px;align-items:center;gap:22px;min-height:62px;padding:12px 0;margin:0;border-bottom:1px solid #ddd6c626;color:#eeeae0;font-size:14px}
+.settings-menu .settings-row span{display:flex;justify-content:space-between;align-items:center;gap:14px;min-width:0}
+.settings-menu output{color:#d7a36c;font-variant-numeric:tabular-nums;white-space:nowrap}
+#panel .settings-menu .settings-row button{width:100%;min-height:40px;padding:9px 12px;border:1px solid #bfb9a45c;background:#202728;color:#f5f2eb;text-align:left;cursor:pointer}
+#panel .settings-menu .settings-row button:disabled{opacity:.5;cursor:not-allowed}
+.settings-menu select{width:100%;padding:10px 12px;border:1px solid #bfb9a45c;background:#202728;color:#f5f2eb;border-radius:0}
+.settings-menu input[type=range]{width:100%;accent-color:#c48d52}
+.settings-menu input[type=checkbox]{justify-self:end;width:21px;height:21px;margin:0;accent-color:#c48d52}
+.settings-menu input:focus-visible,.settings-menu select:focus-visible,.settings-menu button:focus-visible,.settings-menu summary:focus-visible{outline:2px solid #dfb17c;outline-offset:3px}
+#settings-controls-guide{margin-top:16px}
+.settings-menu .settings-data{border-top:1px solid #d8d1bc3d;padding-top:18px}
+.settings-menu .settings-data summary{cursor:pointer;color:#d7a36c;font:800 12px/1.2 Arial,Helvetica,sans-serif;letter-spacing:.18em}
+.settings-menu .settings-actions{margin:18px 0 0}
+.settings-menu .settings-actions a{display:inline-flex;align-items:center;padding:10px 12px;border:1px solid #c9c6bc66;color:#eeeae0;text-decoration:none}
+.settings-menu .settings-bottom{display:flex;justify-content:space-between;gap:14px;padding:18px 0 4px;border-top:1px solid #d8d1bc3d}
+.settings-menu .settings-bottom .primary{width:auto;min-width:120px}
+@media(max-width:600px){#panel[data-screen=settings]{padding:26px}.settings-menu .settings-row{grid-template-columns:minmax(0,1fr) 128px;gap:12px}.settings-menu .settings-row span{display:block}.settings-menu output{display:block;margin-top:4px}}
+@media(max-width:380px){.settings-menu .settings-row{grid-template-columns:1fr}.settings-menu input[type=checkbox]{justify-self:start}.settings-menu .settings-bottom{flex-wrap:wrap}}
+
+#panel[data-screen=controls]{width:min(620px,100%);overflow-y:auto}
+.binding-heading{margin:0 0 12px;color:#d7a36c;font:800 12px/1.2 Arial,Helvetica,sans-serif;letter-spacing:.18em}
+.binding-rows{max-height:min(58vh,570px);overflow-y:auto;padding-right:4px}
+#panel .binding-rows button{min-width:118px;padding:9px 12px;border:1px solid #bfb9a45c;background:#202728;color:#f5f2eb;text-align:center;cursor:pointer}
+#panel .binding-rows button:focus-visible{outline:2px solid #dfb17c;outline-offset:3px}
+.binding-note{margin:16px 0;color:#aeb1ad;font-size:12px;line-height:1.5}
+
+/* Pause uses the title screen's artwork and menu choices; settings stay in their own panel. */
+#panel[data-screen=pause][open]{inset:0;margin:0;width:100vw;height:100dvh;max-width:none;max-height:none;display:flex;flex-direction:column;isolation:isolate;overflow-y:auto;border:0;background:#090b0c;color:#f7f5ef;padding:clamp(28px,5.5vw,96px) clamp(22px,5.5vw,96px) 0;animation:none}
+#panel[data-screen=pause] .panel-head{display:flex;align-items:center;justify-content:space-between;margin:0 0 14px}
+#panel[data-screen=pause] .panel-head .eyebrow{margin:0;color:#d9a46a;font:800 12px/1 Arial,Helvetica,sans-serif;letter-spacing:.18em}
+#panel[data-screen=pause] #close-panel{color:#f7f5ef}
+#panel[data-screen=pause] #panel-title{margin:0;font:900 clamp(38px,4.5vw,82px)/.9 Arial,Helvetica,sans-serif;letter-spacing:-.075em;text-shadow:0 3px 30px #0009}
+#panel[data-screen=pause] #panel-body{display:flex;flex:1;flex-direction:column}
+#panel[data-screen=pause] .pause-menu{margin-top:auto;display:flex;flex-direction:column;gap:8px;width:min(430px,100%);padding:32px 0 clamp(78px,10vh,118px)}
+#panel[data-screen=pause] .pause-menu .menu-choice{cursor:pointer}
+#panel[data-screen=pause] .pause-menu .menu-choice:not(:hover):not(:focus-visible){border-color:#eee9da78;background:#0b1011c9}
+#panel[data-screen=pause] #quit-to-menu{margin-top:clamp(8px,2vh,18px);color:#d3d4d0}
+#panel[data-screen=pause] #quit-to-menu:is(:hover,:focus-visible){color:#111717}
+#panel[data-screen=pause] .pause-footer{position:absolute;bottom:0;left:0;right:0;min-height:53px;padding:0 clamp(22px,5.5vw,96px);display:flex;align-items:center;justify-content:space-between;gap:20px;background:#080b0cd9;border-top:1px solid #d7d4cb38;backdrop-filter:blur(13px);font:12px monospace;letter-spacing:.06em}
+#panel[data-screen=settings] .settings-group h3{color:#d9a46a}
+#panel[data-screen=settings] .settings-row:hover{background:#ffffff08}
+@media(max-width:750px){#panel[data-screen=pause]{padding:28px 22px 0}#panel[data-screen=pause] .pause-menu{padding:24px 0 76px}#panel[data-screen=pause] .pause-menu .menu-choice{min-height:52px;height:52px;font-size:17px}}
+@media(max-height:680px){#panel[data-screen=pause] .pause-menu{gap:5px;padding-top:18px;padding-bottom:60px}#panel[data-screen=pause] .pause-menu .menu-choice{height:46px;min-height:46px}#panel[data-screen=pause] .pause-footer{min-height:44px}}
+
+.title-footer .title-social{display:flex;align-items:center;gap:18px}.title-footer .title-social a{display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;opacity:.82;transition:opacity .18s ease,transform .18s ease}.title-footer .title-social a:hover,.title-footer .title-social a:focus-visible{opacity:1;transform:translateY(-2px)}.title-footer .title-social img{display:block;width:21px;height:21px;object-fit:contain}@media(max-width:440px){.title-footer .title-social{gap:12px}.title-footer .title-social a{width:30px;height:30px}}
+
+.title-footer .title-social .title-youtube{position:relative}
+.title-youtube-tip{position:absolute;right:calc(100% + 12px);top:50%;display:block;width:max-content;max-width:calc(100vw - 115px);padding:11px 16px 10px;border:1px solid #fff;background:#fff;box-shadow:0 10px 30px #0009;color:#111717;font:700 11px/1.2 Arial,Helvetica,sans-serif;letter-spacing:.14em;text-transform:uppercase;white-space:nowrap;opacity:0;visibility:hidden;transform:translate(12px,-50%);transition:opacity .22s ease,transform .22s ease,visibility .22s ease;pointer-events:none}
+.title-youtube:is(:hover,:focus-visible) .title-youtube-tip{opacity:1;visibility:visible;transform:translate(0,-50%)}
+@media(prefers-reduced-motion:reduce){.title-youtube-tip{transition:none}}
+
+#title-gear{height:62px;width:58px;flex:none;display:grid;place-items:center;border:1px solid #f2eee057;background:#0c1010d6;padding:0;color:#f7f5ef;cursor:pointer}#title-gear svg{display:block;width:25px;height:25px}#title-gear:hover,#title-gear:focus-visible{background:#f8f5ed;color:#111717;border-color:#f8f5ed}@media(max-width:750px){#title-gear{height:43px;width:40px}#title-gear svg{width:21px;height:21px}}@media(max-width:440px){#title-gear{width:32px}.title-head{flex-wrap:wrap}.title-actions{margin-left:auto}}
+
+/* Show island concept art only in the in-game pause menu. */
+#panel[data-screen=pause] .pause-art{background-image:url('../landing/arrival.webp');background-position:center center;background-size:cover}
+
+/* The title image pushes into Axio, then a short black wipe reveals the live island arrival. */
+#start.is-launching{overflow:hidden}
+#start.is-launching .title-art{transform-origin:73% 47%;animation:axio-warp-in 980ms cubic-bezier(.16,.72,.13,1) forwards;will-change:transform,filter}
+#start.is-launching .title-head,#start.is-launching .title-menu,#start.is-launching .title-footer,#start.is-launching .title-notice{animation:axio-menu-out 240ms ease-out forwards;pointer-events:none}
+#launch-wipe{position:fixed;inset:0;z-index:30;opacity:0;background:#030607;transition:opacity 340ms ease-in;pointer-events:none}
+#launch-wipe.is-black{opacity:1;pointer-events:auto}
+@keyframes axio-warp-in{0%{transform:scale(1);filter:blur(0) brightness(1)}55%{transform:scale(1.65);filter:blur(.4px) brightness(1.07)}100%{transform:scale(4.1);filter:blur(3px) brightness(1.3)}}
+@keyframes axio-menu-out{to{opacity:0;transform:translateY(-12px)}}
+@media(max-width:750px){#start.is-launching .title-art{transform-origin:50% 46%}}
+#start.is-launching.is-reduced-launch .title-art,#start.is-launching.is-reduced-launch .title-head,#start.is-launching.is-reduced-launch .title-menu,#start.is-launching.is-reduced-launch .title-footer,#start.is-launching.is-reduced-launch .title-notice{animation:none}
+#launch-wipe.is-reduced{transition-duration:150ms}

@@ -1,0 +1,69 @@
+/* Playtest survey, including the full-screen end-of-demo flow. */
+#playtest-survey{box-sizing:border-box;position:fixed;inset:0;margin:auto;width:min(560px,calc(100vw - 32px));max-height:calc(100dvh - 32px);padding:clamp(22px,5vw,38px);overflow:auto;background:linear-gradient(150deg,#1b3034,#0e1a20 75%);color:#eef2e9;border:1px solid #8aa39466;border-radius:10px;box-shadow:0 24px 90px #0009;font:15px/1.55 Inter,system-ui,sans-serif}
+#playtest-survey::backdrop{background:#020b11b8;backdrop-filter:blur(7px)}
+#playtest-survey *{box-sizing:border-box}
+#playtest-survey [hidden]{display:none!important}
+#playtest-survey .survey-top{display:flex;gap:16px;justify-content:space-between;align-items:center;font-size:11px;letter-spacing:.13em;color:#b5c7bf}
+#playtest-survey button{font:inherit;cursor:pointer;min-height:46px;padding:10px 16px;border:1px solid #849b8d70;border-radius:5px;color:#eef2e9;background:#203337;transition:background .12s,border-color .12s}
+#playtest-survey button:hover{background:#304b46;border-color:#c5e9a5}
+#playtest-survey button:focus-visible,#playtest-survey input:focus-visible,#playtest-survey textarea:focus-visible,#playtest-survey summary:focus-visible,#playtest-survey a:focus-visible{outline:3px solid #c5e9a5;outline-offset:3px}
+#playtest-survey button:disabled{cursor:wait;opacity:.55}
+#playtest-survey [data-close]{background:transparent;border:0;padding:6px;white-space:nowrap;font-size:12px}
+#playtest-survey .survey-progress{height:3px;background:#ffffff16;margin:18px 0 28px;overflow:hidden}
+#playtest-survey .survey-progress span{display:block;height:100%;background:#c5e9a5}
+#playtest-survey .survey-step{font-size:11px;letter-spacing:.15em;color:#c5e9a5;margin:0 0 8px}
+#playtest-survey h2{font-size:clamp(25px,5vw,32px);line-height:1.2;letter-spacing:-.025em;margin:0 0 12px;font-weight:600}
+#playtest-survey h2:focus{outline:0}
+#playtest-survey .survey-hint{color:#bac8c5;margin:0 0 24px}
+#playtest-survey .survey-content{display:grid;gap:10px}
+#playtest-survey .survey-choice{text-align:left;width:100%;min-height:58px;font-weight:600}
+#playtest-survey .survey-choice[aria-pressed=true]{border-color:#c5e9a5;background:#314b3c}
+#playtest-survey fieldset{margin:0;border:0;padding:0;display:grid;gap:9px;min-width:0}
+#playtest-survey .survey-check{display:flex;gap:13px;align-items:center;padding:14px;border:1px solid #849b8d70;border-radius:5px;cursor:pointer;background:#203337;min-height:56px}
+#playtest-survey .survey-check:has(input:checked){border-color:#c5e9a5;background:#314b3c}
+#playtest-survey input[type=checkbox]{width:19px;height:19px;margin:0;flex:0 0 19px;accent-color:#c5e9a5}
+#playtest-survey .survey-nav{display:flex;gap:8px;flex-wrap:wrap;margin-top:20px;align-items:center}
+#playtest-survey [data-next]{margin-left:auto;background:#c5e9a5;color:#13231c;font-weight:700}
+#playtest-survey [data-skip]{border:0;background:transparent;color:#bac8c5;font-size:13px}
+#playtest-survey .survey-status:empty{display:none}
+#playtest-survey .survey-status{color:#f1d09d;margin:16px 0 0}
+#playtest-survey .survey-summary{margin:0 0 14px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:9px 18px;font-size:13px}
+#playtest-survey dt{color:#bac8c5}#playtest-survey dd{margin:0;text-align:right;overflow-wrap:anywhere}
+#playtest-survey details{border-top:1px solid #849b8d45;padding:14px 0}
+#playtest-survey summary{cursor:pointer;min-height:28px;font-weight:600}
+#playtest-survey summary span{font-size:12px;font-weight:400;color:#bac8c5;margin-left:8px}
+#playtest-survey details label:not(.survey-consent){display:grid;gap:7px;margin-top:14px}
+#playtest-survey textarea,#playtest-survey input[type=text]{width:100%;background:#0b181e;color:#eef2e9;border:1px solid #849b8d70;border-radius:4px;padding:12px;font:inherit}
+#playtest-survey textarea{resize:vertical;min-height:90px}
+#playtest-survey .survey-consent{display:flex;align-items:center;gap:10px;margin:14px 0}
+#playtest-survey details p,#playtest-survey .survey-disclosure{font-size:12px;color:#bac8c5}
+#playtest-survey a{color:#c5e9a5}
+#playtest-survey .survey-trap{position:absolute!important;left:-10000px!important;width:1px;height:1px;overflow:hidden}
+#playtest-survey .survey-sr{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
+@media(prefers-reduced-motion:reduce){#playtest-survey button{transition:none}}
+
+#playtest-survey .survey-shell,#playtest-survey .survey-form{display:contents}
+#playtest-survey .survey-intro{display:none}
+#playtest-survey[data-mode=ending]{inset:0;margin:0;width:100vw;max-width:none;height:100dvh;max-height:none;padding:0;border:0;border-radius:0;box-shadow:none;overflow:auto;background:#081217e8}
+#playtest-survey[data-mode=ending]::backdrop{background:#02080ccc;backdrop-filter:blur(5px)}
+#playtest-survey[data-mode=ending] .survey-shell{display:grid;grid-template-columns:minmax(290px,44%) minmax(0,1fr);min-height:100%}
+#playtest-survey[data-mode=ending] .survey-intro{display:flex;position:relative;flex-direction:column;justify-content:space-between;overflow:hidden;min-height:100%;padding:clamp(26px,4vw,68px);border-right:1px solid #c5e9a534;background:radial-gradient(ellipse at 20% 82%,#37665b5c,transparent 55%),linear-gradient(150deg,#081117d9,#0b2024d1)}
+#playtest-survey[data-mode=ending] .survey-intro::after{content:"";position:absolute;width:min(62vw,690px);aspect-ratio:1;border:1px solid #c5e9a52a;border-radius:50%;left:-18%;bottom:-32%;box-shadow:0 0 0 48px #c5e9a508,0 0 0 110px #c5e9a506;pointer-events:none}
+#playtest-survey[data-mode=ending] .survey-intro>*{position:relative;z-index:1}
+#playtest-survey[data-mode=ending] .survey-brand{font-size:clamp(19px,2vw,30px);font-weight:700;letter-spacing:.18em;color:#f1f2e9}
+#playtest-survey[data-mode=ending] .survey-intro p{font-size:11px;letter-spacing:.24em;color:#c5e9a5}
+#playtest-survey[data-mode=ending] .survey-intro strong{display:block;max-width:7ch;font-size:clamp(48px,7vw,116px);line-height:.9;letter-spacing:-.065em;font-weight:600;color:#f1f2e9}
+#playtest-survey[data-mode=ending] .survey-intro small{font-size:11px;letter-spacing:.12em;color:#a9bbb6}
+#playtest-survey[data-mode=ending] .survey-form{display:flex;flex-direction:column;justify-content:center;align-items:stretch;width:min(100%,760px);min-height:100%;margin:auto;padding:clamp(28px,5vw,84px)}
+#playtest-survey[data-mode=ending] .survey-top{margin-bottom:clamp(22px,5vh,54px)}
+#playtest-survey[data-mode=ending] .survey-top span{font-weight:700;color:#eaf0e9}
+#playtest-survey[data-mode=ending] .survey-progress{height:2px;margin:0 0 clamp(32px,6vh,70px)}
+#playtest-survey[data-mode=ending] h2{font-size:clamp(32px,3.5vw,58px);line-height:1.07;max-width:18ch;margin-bottom:clamp(22px,4vh,48px)}
+#playtest-survey[data-mode=ending] .survey-choice{min-height:64px;padding:18px 22px;background:#d9e5da0b;border-color:#d9e5da38;border-radius:2px}
+#playtest-survey[data-mode=ending] .survey-choice:hover{background:#c5e9a521}
+#playtest-survey[data-mode=ending] .survey-nav{margin-top:clamp(24px,4vh,46px)}
+#playtest-survey[data-mode=ending] [data-next]{background:#c5e9a5;border-color:#c5e9a5;color:#10211c}
+@media(max-width:760px){#playtest-survey[data-mode=ending] .survey-shell{grid-template-columns:1fr}#playtest-survey[data-mode=ending] .survey-intro{min-height:168px;padding:22px 26px;border-right:0;border-bottom:1px solid #c5e9a534}#playtest-survey[data-mode=ending] .survey-brand,#playtest-survey[data-mode=ending] .survey-intro small{display:none}#playtest-survey[data-mode=ending] .survey-intro strong{max-width:none;font-size:clamp(36px,9vw,64px)}#playtest-survey[data-mode=ending] .survey-intro::after{left:auto;right:-12%;bottom:-90%;width:60vw}#playtest-survey[data-mode=ending] .survey-form{min-height:calc(100dvh - 168px);padding:28px 24px 42px}#playtest-survey[data-mode=ending] .survey-top{margin-bottom:28px}#playtest-survey[data-mode=ending] .survey-progress{margin-bottom:32px}#playtest-survey[data-mode=ending] h2{font-size:clamp(30px,8vw,42px)}}
+
+#playtest-survey .survey-community{margin:4px 0 14px;padding-top:18px;border-top:1px solid #849b8d45;color:#bac8c5;font-size:14px;line-height:1.55}
+#playtest-survey .survey-community a{display:inline-block;color:#c5e9a5;text-decoration:underline;text-underline-offset:3px}

@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
+  <symbol id="gather" viewBox="0 0 48 48">
+    <path d="M12 38 31 12M8 39l4 1 3-3-4-4-3 3zM29 12c4-5 9-6 13-5l-5 11c-3-1-6-1-10 2l-4-4z"/>
+    <path d="m27 20 5 5"/>
+  </symbol>
+  <symbol id="interact" viewBox="0 0 48 48">
+    <path d="M13 26V13a3 3 0 0 1 6 0v10-15a3 3 0 0 1 6 0v14-12a3 3 0 0 1 6 0v14-9a3 3 0 0 1 6 0v13c0 8-5 14-13 14h-3c-5 0-8-2-11-6l-5-7c-2-3 2-6 5-4l3 3"/>
+  </symbol>
+  <symbol id="jump" viewBox="0 0 48 48">
+    <path d="m15 21 9-10 9 10M24 12v19M11 36h26M17 31l-4 5m18-5 4 5"/>
+  </symbol>
+  <symbol id="sprint" viewBox="0 0 48 48">
+    <circle cx="30" cy="10" r="3"/><path d="m25 18 7 3 5 8m-18-2 7-9-8-4-6 5m14 2-2 9-9 9M6 28h9M4 34h8"/>
+  </symbol>
+  <symbol id="place" viewBox="0 0 48 48">
+    <path d="m9 18 15-8 15 8v18l-15 8-15-8zM9 18l15 9 15-9M24 27v17M24 4v9M19 8h10"/>
+  </symbol>
+</svg>
