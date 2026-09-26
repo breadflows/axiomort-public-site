@@ -27,4 +27,4 @@ const toggle=$('nav-toggle'),nav=$('main-nav');toggle.onclick=()=>{const open=to
 nav.addEventListener('click',e=>{if(e.target.closest('a')){nav.classList.remove('open');toggle.setAttribute('aria-expanded','false');}});
 document.addEventListener('keydown',e=>{if(e.key==='Escape'&&nav.classList.contains('open')){nav.classList.remove('open');toggle.setAttribute('aria-expanded','false');toggle.focus();}});
 showCategory('concept');
-try{const save=JSON.parse(localStorage.getItem('axiomort_survival_v1'));if(save?.savedAt)document.querySelector('[data-play]').innerHTML='CONTINUE GAME <span aria-hidden="true">↗</span>';}catch{}
+try{const save=JSON.parse(localStorage.getItem('axiomort_survival_v1'));if(save?.savedAt)document.querySelector('[data-play]').innerHTML='CONTINUE GAME';}catch{}

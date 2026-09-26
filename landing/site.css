@@ -15,3 +15,49 @@
 /* Temporary Discord page */
 .discord-page{min-height:100svh;background:radial-gradient(circle at 50% 48%,#22342f 0%,#101313 55%,#080d0d 100%)}.discord-coming-soon{min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:40px 24px}.discord-coming-soon .brand{font:700 11px Unbounded,Arial,sans-serif;letter-spacing:.18em;position:absolute;top:38px;left:4vw}.discord-coming-soon .discord-mark{width:54px;height:54px;margin-bottom:28px}.discord-coming-soon h1{font:700 clamp(38px,6vw,78px) Unbounded,Arial,sans-serif;letter-spacing:-.06em}.discord-coming-soon p{margin-top:14px;font-size:11px;letter-spacing:.25em}.discord-coming-soon .back{position:absolute;bottom:42px;font-size:10px;letter-spacing:.16em;border-bottom:1px solid #ffffff70;padding-bottom:9px}
 @media(max-width:700px){.site-header nav .social-links{margin:8px 0 0;gap:14px}.site-header nav .social-links a{padding:4px;width:36px;height:36px}.footer-social{width:100%}.footer-social .social-links{gap:22px}.discord-coming-soon .brand{left:6vw;top:28px}}
+
+/* Single footer row, in reading order */
+.site-footer{display:grid;grid-template-columns:auto minmax(0,1fr) auto minmax(0,1fr) auto;gap:24px;align-items:center}
+.footer-trademark,.footer-copyright{font-size:11px;line-height:1.5;letter-spacing:normal;text-align:center}
+.site-footer>.footer-social{width:auto}
+.site-footer>a:last-child{white-space:nowrap;width:auto}
+@media(max-width:700px){.site-footer{display:flex;flex-wrap:wrap;justify-content:center;gap:18px 24px}.footer-trademark{flex:1 1 160px}.footer-copyright{flex:1 1 150px}.site-footer>a:last-child{text-align:center}}
+/* Registered mark follows branding without changing its line height. */
+.registered-mark{display:inline-block;position:relative;top:-1.8em;font-family:Arial,sans-serif;font-size:clamp(6px,.3em,24px);font-weight:400;line-height:0;vertical-align:baseline;letter-spacing:0;margin-left:.18em}.studio .registered-mark{top:-.45em}
+.footer-title{white-space:nowrap}
+
+/* Keep the registration mark aligned with the top of the wordmark. */
+.hero h1{position:relative;width:max-content;max-width:100%;white-space:nowrap;padding-right:.065em}
+.hero h1 .registered-mark{position:absolute;left:100%;top:8%;font-size:.12em;line-height:1;vertical-align:baseline;margin-left:.5em}
+
+/* Axio device emblem. */
+.axio-emblem{width:44px;height:44px;object-fit:contain;flex-shrink:0}.studio{white-space:nowrap}@media(max-width:700px){.axio-emblem{width:34px;height:34px}}
+
+/* Approved homepage motion */
+/* Visual-only study: original content, section order and gallery behavior. */
+.hero::before{content:'';position:absolute;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(ellipse at 39% 20%,#ecdbb91c,transparent 50%),linear-gradient(110deg,transparent 25%,#d5e8e509 47%,transparent 64%);animation:sky-light 16s ease-in-out infinite alternate}
+.hero::after{content:'';position:absolute;inset:0;pointer-events:none;z-index:0;box-shadow:inset 0 0 140px #06100f45;background:linear-gradient(0deg,#09111042,transparent 22%)}
+.hero-content,.hero-foot{z-index:1}
+.hero-art{animation:coastal-drift 28s ease-in-out infinite alternate;transform-origin:65% 45%;will-change:transform}
+.hero-content{animation:arrival-reveal .9s ease-out both}
+.hero h1{position:relative;width:max-content;max-width:100%;text-shadow:0 3px 35px #0005}
+
+.button,.nav-play{position:relative;overflow:hidden;transition:background .25s,box-shadow .3s,transform .25s}
+.button::after,.nav-play::after{content:'';position:absolute;inset:0;pointer-events:none;background:linear-gradient(110deg,transparent 25%,#fff5 49%,transparent 73%);transform:translateX(-140%);transition:transform .65s ease}
+.button:hover::after,.button:focus-visible::after,.nav-play:hover::after,.nav-play:focus-visible::after{transform:translateX(140%)}
+.button:hover,.nav-play:hover{box-shadow:0 0 24px #bfd4ce1c}
+.button span,.quiet-link span,.line-link span{display:inline-block;transition:transform .25s ease}
+.button:hover span,.line-link:hover span{transform:translate(2px,-2px)}
+.quiet-link:hover span{transform:translateY(3px)}
+.media-stage::after{content:'';position:absolute;inset:0;pointer-events:none;box-shadow:inset 0 0 70px #0003;border:1px solid #e1e8dc22;transition:box-shadow .35s}
+.media-stage:hover::after{box-shadow:inset 0 0 40px #0001}
+#art-viewer[open]{animation:viewer-in .22s ease-out}
+@keyframes coastal-drift{from{transform:scale(1.015) translateX(-.15%)}to{transform:scale(1.045) translateX(.15%)}}
+@keyframes sky-light{from{opacity:.35}to{opacity:.85}}
+@keyframes arrival-reveal{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+@keyframes viewer-in{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:700px){.hero-art{animation:none;transform:none;will-change:auto}.hero::after{box-shadow:inset 0 0 65px #06100f35}}
+@media(prefers-reduced-motion:reduce){.hero-art,.hero::before,.hero-content,#art-viewer[open]{animation:none;transform:none;will-change:auto}.button::after,.nav-play::after{display:none}}
+/* Keep the registration mark aligned with the top of the wordmark. */
+.hero h1{position:relative;width:max-content;max-width:100%;white-space:nowrap;padding-right:.065em}
+.hero h1 .registered-mark{position:absolute;left:100%;top:8%;font-size:.12em;line-height:1;vertical-align:baseline;margin-left:.5em}
